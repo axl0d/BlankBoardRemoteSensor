@@ -31,6 +31,9 @@
           <div class="col-sm-12">
             <h3>Consumo para el Medidor Cód. {{ $key }}</h3>
             <canvas id="areaChart-{{ $key }}" class="col-sm-12"></canvas>
+            <div style="text-align:center">
+              <span>metros cúbicos vs meses</span>
+            </div>
             @endforeach
           </div>
         </div>

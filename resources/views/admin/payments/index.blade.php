@@ -33,7 +33,7 @@
             <div class="form-group col-sm-6">
               {{ Form::label('user_id', 'Cédula', array('class' => 'control-label col-sm-6')) }}
               <div class="col-sm-6">
-                {{ Form::select('user_id[]', \App\Models\User::where('dni', '<>', null)->pluck('dni','id'), $filters['user_id'], ['class' => 'control-form chosen-select col-sm-12', 'onchange' => 'this.form.submit()', 'multiple' => 'multiple']) }}
+                {{ Form::text('user_id', $filters['user_id'], ['class' => 'control-form chosen-select col-sm-12']) }}
               </div>
             </div>
 

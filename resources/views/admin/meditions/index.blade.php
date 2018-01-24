@@ -17,9 +17,45 @@
       @include('includes.alerts')
     </div>
 
+    @if ( auth()->user()->hasRole('user') )
+    <div class="col-sm-12">
+        <div class="box box-primary">
+          <div class="box-header with-border">
+              <h3 class="box-title">Datos del Usuario</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" type="button" data-widget="collapse">
+                  <i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body">
+              <h3 class="text-center">{{ auth()->user()->name }} <small>Cédula {{ auth()->user()->dni }}</small></h3>
+              <hr>
+              <div class="col-sm-8">
+                <div class="col-sm-12">
+                  <div class="col-sm-4 text-right"><b>Email:</b></div>
+                  <div class="col-sm-8">{{ auth()->user()->email}}</div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="col-sm-4 text-right"><b>Teléfono:</b></div>
+                  <div class="col-sm-8">{{ auth()->user()->phone}}</div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="col-sm-4 text-right"><b>Dirección:</b></div>
+                  <div class="col-sm-8">{{ auth()->user()->address}}</div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="col-sm-4 text-right"><b>Cliente Desde:</b></div>
+                  <div class="col-sm-8">{{ auth()->user()->created_at->format('d-m-Y') }}</div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      @endif
+
     <div class="col-sm-12">
       <div class="box box-warning">
-
         <div class="box-header with-border">
           <h3 class="box-title">Filtros</h3>
           <div class="box-tools pull-right">
@@ -31,7 +67,7 @@
         <div class="box-body no-padding">
           {{ Form::open(['method' => 'GET', 'class' => "form-horizontal"]) }}
             <div class="form-group col-sm-4">
-              {{ Form::label('sensor_id', 'Cód. Sensor', ['class' => 'control-label col-sm-6', 'onchange' => 'this.form.submit()']) }}
+              {{ Form::label('sensor_id', 'Cód. Medidor', ['class' => 'control-label col-sm-6', 'onchange' => 'this.form.submit()']) }}
               <div class="col-sm-6">
                 {{ Form::select('sensor_id', \App\Models\Sensor::where('user_id', auth()->id())->pluck('id','id')->prepend('Todos'), $filters['sensor_id'], ['class' => 'control-form', 'onchange' => 'this.form.submit()']) }}
               </div>
@@ -90,7 +126,7 @@
                 <td>{{ $sensor->id }}</td>
                 <td>{{ __('sensors.table.' . $sensor->type) }}</td>
                 <td>{{ number_format($invoice->sum('medition'), 2, '.', ',') }}</td>
-                <td class="text-red"><b>{{ number_format($invoice->sum('medition') * config('rates.' . $sensor->type), 2, '.', ',') }}</b></td>
+                <td class="text-red"><b>$&nbsp;{{ number_format($invoice->sum('medition') * config('rates.' . $sensor->type), 2, '.', ',') }}</b></td>
               </tr>
                 @endif
               @endforeach

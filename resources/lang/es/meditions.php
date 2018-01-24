@@ -14,7 +14,7 @@ return [
       'sensor' => 'Cód. Medidor',
       'dni' => 'Cédula',
       'month' => 'Mes',
-      'medition' => 'Consumo',
+      'medition' => 'Consumo [mt3]',
       'price' => 'Costo',
       'rate' => 'Tasa',
       'type' => 'Tipo de Contrato',

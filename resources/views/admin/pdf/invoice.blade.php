@@ -7,9 +7,9 @@
     <table class="table">
       <tr>
         <td style="width: 50%;">
-          <h4>Compañia Nacional de Agua</h4>
-          <p>Dirección de la empresa</p>
-          <p>Teléfono de la empresa</p>
+          <h4>PORTOAGUAS EP</h4>
+          <p>Dirección de la empresa:</p>
+          <p>Teléfono de la empresa:</p>
         </td>
         <td class="bg-primary" style="width: 50%;">
           <h4 class="text-right">FACTURA</hr>
@@ -51,10 +51,10 @@
     <table class="table table-striped">
       <thead>
         <tr class="info">
-          <th>Descripción</th>
-          <th>Consumo [mt3]</th>
-          <th>Tasa [mt3/$]</th>
-          <th>Monto</th>
+          <th >Descripción</th>
+          <th class="text-center">Consumo [mt3]</th>
+          <th class="text-center">Tasa [mt3/$]</th>
+          <th class="text-center">Monto</th>
         </tr>
       </thead>
       <tbody>
@@ -81,16 +81,16 @@
         </td>
       </tr>
     </table>
-    <table class="table table-bordered">
-      <tr>
+    <table class="table table-striped">
+      <tr class="info">
         <td colspan="3"><b>Consumos anteriores:</b></td>
       </tr>
       <tr>
         @forelse ($latestInvoices as $invoice)
         <td style="width: 33%;">
-          <p>Mes facturado: {{ __('messages.month.' . $invoice->month) }}<br>
-          Consumo [mt3]: {{ number_format($invoice->consumption, 2, '.', ',') }}<br>
-          Pagado: $ {{ number_format($invoice->payment, 2, '.', ',') }}
+          <p><b>Mes facturado:</b> {{ __('messages.month.' . $invoice->month) }}<br><b>
+          Consumo [mt3]:</b> {{ number_format($invoice->consumption, 2, '.', ',') }}<br>
+          <b>Pagado:</b> $ {{ number_format($invoice->payment, 2, '.', ',') }}
           {{ __('sensors.table.' . $invoice->sensor->type) }}
           </p>
         </td>

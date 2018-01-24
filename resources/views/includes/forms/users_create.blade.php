@@ -94,6 +94,16 @@
       @endif
     </div>
 
+    <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
+      {{ Form::label('roles', 'Roles', array('class' => 'control-label')) }}
+      {{ Form::select('roles[]', \App\Models\Role::pluck('name','id'), null, array('class' => 'control-form chosen-select', 'rows' => '4')) }}
+      @if ($errors->has('roles'))
+        <span class="help-block">
+          <strong>{{ $errors->first('roles') }}</strong>
+        </span>
+      @endif
+    </div>
+
   </div>
 
   <div class="col-sm-offset-3 col-sm-9">
